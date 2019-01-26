@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tuile : MonoBehaviour
+public class Tuile 
 {
+    public Vector2 CoordTuile;
+    public string SoilTexture;
+    
     // Start is called before the first frame update
     /*void Start()
     {
