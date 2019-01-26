@@ -78,4 +78,54 @@ public class Master : MonoBehaviour
               
         }
     }
+
+    public int currentYear = 0;
+    public int currentSeason = 0;
+    private int seasonDays = 10;
+    public int currentDay = 0;
+
+    private int ActionNb = 10;
+    private int currentAction = 0;
+
+
+
+    public void NextAction()
+    {
+        currentAction++;
+if (currentAction<ActionNb)
+        {
+
+        }
+else
+        {
+           //change le sprite de l'horloge, et activer le bouton lit (NextDay) 
+        }
+    }
+
+    public void NextDay()
+    {
+        print("on passe au jour suivant");
+        currentDay++;
+        currentAction = 0;
+        if(currentDay>= seasonDays)
+        {
+            newSeason();
+        }
+    }
+
+    public void newSeason()
+    {
+        currentDay = 0;
+        currentSeason++;
+        if (currentSeason > 3)
+        {
+           
+        }
+    }
+
+    public void newYear()
+    {
+        currentSeason = 0;
+        currentYear++;
+    }
 }
