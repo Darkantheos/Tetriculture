@@ -59,9 +59,27 @@ public class Master : MonoBehaviour
                 tuile.CoordTuile = new Vector2(i*5, j*5);
                 TuilesMap.Add(tuile);
 
-                tuile.BlockList = new Bloc[5, 5];
-                Bloc bloc0 = new Bloc();
-                bloc0.cases = new List<Case>(); 
+                tuile.blockList = new List<Bloc>();
+
+                Bloc aubergine = new Bloc();
+
+                aubergine.DaysGrow = 0;
+                
+
+
+                tuile.CaseArray = new Case[5, 5];
+
+                tuile.CaseArray[2, 2] = new Case();
+
+                tuile.CaseArray[2, 2].blockID = 0;
+                tuile.CaseArray[2, 2].pivot.Set(2, 2);
+                tuile.CaseArray[2, 2].XD = 0;
+                tuile.CaseArray[2, 2].YD = 0;
+
+                aubergine.cases.Add(tuile.CaseArray[2, 2]);
+                tuile.blockList.Add(aubergine);
+
+                
               
             }
         }

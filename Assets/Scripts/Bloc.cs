@@ -13,4 +13,5 @@ public class Bloc
     [SerializeField] public Vector2Int pivot;
 
     public Plante plante;
+    public int DaysGrow;
 }

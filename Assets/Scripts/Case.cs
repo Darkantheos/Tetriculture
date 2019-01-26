@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class Case : MonoBehaviour
+public class Case 
 {
     public bool isEmpty;
 
