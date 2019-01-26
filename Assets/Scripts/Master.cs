@@ -5,7 +5,7 @@ using UnityEngine;
 public class Master : MonoBehaviour
 {
 
-    public List<Tuile> TuilesMap;
+    public List<Tuile> TuilesMap = new List<Tuile>();
 
     public Dictionary<string, Sprite> TexturesTuile;
 
@@ -61,6 +61,11 @@ public class Master : MonoBehaviour
               
             }
         }
+    }
+
+    public void UpdateTuile(int x, int y)
+    {
+
     }
 
     // Update is called once per frame

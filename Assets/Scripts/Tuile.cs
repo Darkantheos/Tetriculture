@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Tuile 
 {
     public Vector2 CoordTuile;
     public string SoilTexture;
-    
+
+    public List<Bloc> BlockList;
+
     // Start is called before the first frame update
     /*void Start()
     {
