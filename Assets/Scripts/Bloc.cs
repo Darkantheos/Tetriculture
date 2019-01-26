@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
 public class Bloc : MonoBehaviour
 {
     // Une case en L est definie par 4 cases avec ces positions :
     // (0,0) / (1,0) / (0,1) / (0,2)
-    [SerializeField] private List<Case> cases;
+    [SerializeField] public List<Case> cases;
 
-    [SerializeField] private Vector2Int pivot;
+    [SerializeField] public Vector2Int pivot;
 
-    private Plante plante;
+    public Plante plante;
 }

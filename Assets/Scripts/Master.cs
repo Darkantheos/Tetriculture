@@ -58,6 +58,10 @@ public class Master : MonoBehaviour
                 Tuile tuile = new Tuile();
                 tuile.CoordTuile = new Vector2(i*5, j*5);
                 TuilesMap.Add(tuile);
+
+                tuile.BlockList = new Bloc[5, 5];
+                Bloc bloc0 = new Bloc();
+                bloc0.cases = new List<Case>(); 
               
             }
         }
@@ -79,6 +83,7 @@ public class Master : MonoBehaviour
         for (int i = 0; i < TuilesMap.Count; i++)
         {
             vectorTemp.Set(TuilesMap[i].CoordTuile.x, 0, TuilesMap[i].CoordTuile.y);
+            
             GameObject tuile = Instantiate(TuilePrefab, vectorTemp, Quaternion.identity ,TuileParent.transform);
               
         }

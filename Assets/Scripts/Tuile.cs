@@ -8,7 +8,7 @@ public class Tuile
     public Vector2 CoordTuile;
     public string SoilTexture;
 
-    public List<Bloc> BlockList;
+    public Bloc[,] BlockList;
 
     // Start is called before the first frame update
     /*void Start()
