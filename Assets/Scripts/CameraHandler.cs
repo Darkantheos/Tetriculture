@@ -7,12 +7,13 @@ public class CameraHandler : MonoBehaviour {
 
 
 	private static readonly float PanSpeed = -20f;
+    public static readonly float RotateSpeed = -100;
 	private static readonly float ZoomSpeedTouch = 0.1f;
 	private static readonly float ZoomSpeedMouse = 10f;
 
 
-	public static readonly float[] BoundsX = new float[]{0, 40};
-	public static readonly float[] BoundsZ = new float[]{-5, 40};
+	public static readonly float[] BoundsX = new float[]{-10, 50};
+	public static readonly float[] BoundsZ = new float[]{-10, 50};
 	public static readonly float[] ZoomBounds = new float[]{10, 60};
 
 	private Camera cam;
@@ -20,6 +21,9 @@ public class CameraHandler : MonoBehaviour {
 	private bool panActive;
 	private Vector3 lastPanPosition;
 	private int panFingerId; // Touch mode only
+
+    private bool rotateActive;
+
 
 	private bool zoomActive;
 	private Vector2[] lastZoomPositions; // Touch mode only
@@ -105,6 +109,21 @@ public class CameraHandler : MonoBehaviour {
 			PanCamera(Input.mousePosition);
 		}
 
+        if(Input.GetMouseButtonDown(1))
+        {
+            rotateActive = true;
+            lastPanPosition = Input.mousePosition;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            rotateActive = false;
+        }
+        else if (Input.GetMouseButton(1))
+        {
+            RotateCam(Input.mousePosition);
+        
+    }
+
 		// Check for scrolling to zoom the camera
 		float scroll = Input.GetAxis("Mouse ScrollWheel");
 		zoomActive = true;
@@ -112,6 +131,7 @@ public class CameraHandler : MonoBehaviour {
 		zoomActive = false;
 	}
 
+    public Transform TransCamY;
 	void PanCamera(Vector3 newPanPosition) {
 		if (!panActive) {
 			return;
@@ -119,19 +139,45 @@ public class CameraHandler : MonoBehaviour {
 
 		// Translate the camera position based on the new input position
 		Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-		Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
-		transform.Translate(-move, Space.World);  
+        Vector3 camyrot = new Vector3(0, transform.rotation.y, 0);
+		Vector3 move =  new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
+
+        TransCamY.rotation.eulerAngles.Set(0, transform.rotation.eulerAngles.y, 0);
+        TransCamY.position = transform.position;
+		transform.Translate(-move, TransCamY);  
 		ClampToBounds();
 
 		lastPanPosition = newPanPosition;
 	}
 
-	void ZoomCamera(float offset, float speed) {
+    void RotateCam(Vector3 newPanPosition)
+    {
+        if (!rotateActive)
+        {
+            return;
+        }
+
+        // Translate the camera position based on the new input position
+        Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
+        Vector3 move = new Vector3(0, offset.x * RotateSpeed, 0);
+        transform.Rotate(-move, Space.World);
+        ClampToBounds();
+
+        lastPanPosition = newPanPosition;
+    }
+    private Vector3 TempVect3;
+
+    void ZoomCamera(float offset, float speed) {
 		if (!zoomActive || offset == 0) {
 			return;
 		}
+        
+        TempVect3.Set(transform.position.x, transform.position.y + offset * speed, transform.position.z);
+        //cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
 
-		cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+        transform.Translate(Vector3.forward *offset * speed, Space.Self);
+
+        //transform.position = TempVect3;
 	}
 
 	void ClampToBounds() {

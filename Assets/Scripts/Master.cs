@@ -24,16 +24,18 @@ public class Master : MonoBehaviour
         for (int i = 0; i < gridSize +1; i++)
         {
             GameObject Line = Instantiate(LinePrefab, GridParent);
-            vectorTemp.Set(i*5 - 2.5f, 0.1f, -2.5f);
+            vectorTemp.Set(i*5 - 2.5f, 0.01f, -2.5f);
             Line.GetComponent<LineRenderer>().SetPosition(0, vectorTemp);
-            vectorTemp.Set(i * 5 - 2.5f, 0.1f, 47.5f);
+            vectorTemp.Set(i * 5 - 2.5f, 0.01f, 47.5f);
             Line.GetComponent<LineRenderer>().SetPosition(1, vectorTemp);
         }
         for (int j = 0; j < gridSize + 1; j++)
         {
             GameObject Line = Instantiate(LinePrefab, GridParent);
-            vectorTemp.Set(-2.5f, 0.1f, j*5 - 2.5f);
+            vectorTemp.Set(- 2.5f, 0.01f, j*5 -2.5f);
             Line.GetComponent<LineRenderer>().SetPosition(0, vectorTemp);
+            vectorTemp.Set(47.5f, 0.01f,j*5 -2.5f);
+            Line.GetComponent<LineRenderer>().SetPosition(1, vectorTemp);
         }
     }
 
