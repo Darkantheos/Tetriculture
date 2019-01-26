@@ -2,8 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plante : MonoBehaviour
+[System.Serializable]
+public class Plante 
 {
+    public string planteName;
+    public int Stade2Day;
+    public int Stade3Day;
+
+    public List<GameObject> stadesPlante;
+
+    public int SeasonGrow;
+ 
+
+
     // Start is called before the first frame update
     void Start()
     {

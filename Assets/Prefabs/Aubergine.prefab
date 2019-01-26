@@ -43,3 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414cde6a066bb1a4c96b2bf482da7dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planteName: Aubergine
+  Stade2Day: 1
+  Stade3Day: 2
+  stadesPlante:
+  - {fileID: 8653686413406744723, guid: 84b1685f313fa2e48b0b415761b76115, type: 3}
+  - {fileID: 6392674886223945663, guid: c4ace8d879bb83941b334c76750cb6f6, type: 3}
+  - {fileID: 4021061556982543029, guid: 2261d3e4c15d03d48a357726a8f4c1aa, type: 3}
+  SeasonGrow: 0
