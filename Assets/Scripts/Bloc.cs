@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class Bloc : MonoBehaviour
+public class Bloc
 {
     // Une case en L est definie par 4 cases avec ces positions :
     // (0,0) / (1,0) / (0,1) / (0,2)
