@@ -5,7 +5,7 @@ using UnityEngine;
 public class Master : MonoBehaviour
 {
 
-    public List<Tuile> TuilesMap;
+    public List<Tuile> TuilesMap = new List<Tuile>();
 
     public Dictionary<string, Sprite> TexturesTuile;
 
@@ -58,9 +58,18 @@ public class Master : MonoBehaviour
                 Tuile tuile = new Tuile();
                 tuile.CoordTuile = new Vector2(i*5, j*5);
                 TuilesMap.Add(tuile);
+
+                tuile.BlockList = new Bloc[5, 5];
+                Bloc bloc0 = new Bloc();
+                bloc0.cases = new List<Case>(); 
               
             }
         }
+    }
+
+    public void UpdateTuile(int x, int y)
+    {
+
     }
 
     // Update is called once per frame
@@ -74,8 +83,59 @@ public class Master : MonoBehaviour
         for (int i = 0; i < TuilesMap.Count; i++)
         {
             vectorTemp.Set(TuilesMap[i].CoordTuile.x, 0, TuilesMap[i].CoordTuile.y);
+            
             GameObject tuile = Instantiate(TuilePrefab, vectorTemp, Quaternion.identity ,TuileParent.transform);
               
         }
+    }
+
+    public int currentYear = 0;
+    public int currentSeason = 0;
+    private int seasonDays = 10;
+    public int currentDay = 0;
+
+    private int ActionNb = 10;
+    private int currentAction = 0;
+
+
+
+    public void NextAction()
+    {
+        currentAction++;
+if (currentAction<ActionNb)
+        {
+
+        }
+else
+        {
+           //change le sprite de l'horloge, et activer le bouton lit (NextDay) 
+        }
+    }
+
+    public void NextDay()
+    {
+        print("on passe au jour suivant");
+        currentDay++;
+        currentAction = 0;
+        if(currentDay>= seasonDays)
+        {
+            newSeason();
+        }
+    }
+
+    public void newSeason()
+    {
+        currentDay = 0;
+        currentSeason++;
+        if (currentSeason > 3)
+        {
+           
+        }
+    }
+
+    public void newYear()
+    {
+        currentSeason = 0;
+        currentYear++;
     }
 }

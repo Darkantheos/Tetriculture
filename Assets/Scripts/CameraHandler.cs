@@ -171,13 +171,17 @@ public class CameraHandler : MonoBehaviour {
 		if (!zoomActive || offset == 0) {
 			return;
 		}
-        
-        TempVect3.Set(transform.position.x, transform.position.y + offset * speed, transform.position.z);
-        //cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
 
-        transform.Translate(Vector3.forward *offset * speed, Space.Self);
+        if (transform.position.y < 12 && offset < 0 || transform.position.y > 2 && offset > 0)
+        {
 
-        //transform.position = TempVect3;
+            TempVect3.Set(transform.position.x, transform.position.y + offset * speed, transform.position.z);
+            //cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+
+            transform.Translate(Vector3.forward * offset * speed, Space.Self);
+
+            //transform.position = TempVect3;
+        }
 	}
 
 	void ClampToBounds() {
