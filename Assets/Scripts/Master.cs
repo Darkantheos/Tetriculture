@@ -20,8 +20,11 @@ public class Master : MonoBehaviour
     public GameObject auberginePrefab0;
     public GameObject auberginePrefab1;
     public GameObject auberginePrefab2;
-
+    public GameObject temporalObject;
     public int gridSize = 10;
+
+    public static Master mastersing; 
+
         public void DrawGrid()
     {
         //Dessinne la grille en lines renderer
@@ -47,6 +50,14 @@ public class Master : MonoBehaviour
 
     void Start()
     {
+        if (mastersing)
+        {
+
+        }
+        else
+        {
+            mastersing = this;
+        }
         DrawGrid();
         TuilesMap = new List<Tuile>();
         FillTuiles();
@@ -124,7 +135,7 @@ public class Master : MonoBehaviour
                 {
                     //print("je place une aubergine");
                     //Check l'avancement de la plante
-                    GameObject item = new GameObject();
+                    GameObject item = temporalObject;
                     if (TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].DaysGrow < TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.Stade2Day)
                     {
                         item = Instantiate(TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.stadesPlante[0]);
@@ -142,7 +153,7 @@ public class Master : MonoBehaviour
                     
                     Vector3 kiki = new Vector3(TuilesMap[ID].CoordTuile.x- 2 + i, 0, TuilesMap[ID].CoordTuile.y- 2 +j);
                     item.transform.position = kiki;
-                    print(TuilesMap[ID].CoordTuile.x);
+                    //print(TuilesMap[ID].CoordTuile.x);
                     item.transform.parent = TuileParent.transform.GetChild(ID);
                 }
             }
@@ -192,12 +203,26 @@ else
 
     public void NextDay()
     {
-        print("on passe au jour suivant");
+        //print("on passe au jour suivant");
         currentDay++;
         currentAction = 0;
         if(currentDay>= seasonDays)
         {
             newSeason();
+        }
+
+        //Update les jours des cases
+        for (int i = 0; i < TuilesMap.Count; i++)
+        {
+            for (int j = 0; j < TuilesMap[i].blockList.Count; j++)
+            {
+                TuilesMap[i].blockList[j].DaysGrow++;
+            }
+        }
+
+        for (int i = 0; i < TuilesMap.Count; i++)
+        {
+            UpdateTuile(i);
         }
     }
 
