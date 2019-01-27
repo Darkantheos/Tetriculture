@@ -44,6 +44,8 @@ public class TestGrille : MonoBehaviour
 
     public void VerifierContenu(BlocObject blocObject, Vector3 position, int rotation)
     {
+        Debug.Log("Rotation = " + rotation);
+
         for (int i = 0; i < TAILLE; ++i)
         {
             for (int j = 0; j < TAILLE; ++j)
@@ -52,22 +54,50 @@ public class TestGrille : MonoBehaviour
                 Collider collider = quad.GetComponent<Collider>();
                 Renderer renderer = quad.GetComponent<Renderer>();
 
-                /*if (i == 2 && j == 3)
+                Vector2Int min = Vector2Int.zero;
+                Vector2Int max = Vector2Int.zero;
+                int deltaX = 0;
+                int deltaY = 0;
+
+                switch (rotation)
                 {
-                    Debug.Log("i + blocObject.bloc.min.x = " + (i + blocObject.bloc.min.x));
-                    Debug.Log("j + blocObject.bloc.min.y = " + (j + blocObject.bloc.min.y));
-                    Debug.Log("i + blocObject.bloc.max.x = " + (i + blocObject.bloc.max.x));
-                    Debug.Log("j + blocObject.bloc.max.y = " + (j + blocObject.bloc.max.y));
-                    Debug.Log(collider.bounds.Contains(position));
-                }*/
+                    case 0:
+                        min.x = i + blocObject.bloc.min.x;
+                        min.y = j + blocObject.bloc.min.y;
+                        max.x = i + blocObject.bloc.max.x;
+                        max.y = j + blocObject.bloc.max.y;
+                        break;
+
+                    case 90:
+                        min.x = i - blocObject.bloc.max.y;
+                        min.y = j + blocObject.bloc.min.x;
+                        max.x = i - blocObject.bloc.min.y;
+                        max.y = j + blocObject.bloc.max.x;
+                        break;
+
+                    case 180:
+                        break;
+
+                    case 270:
+                        break;
+                }
 
                 if (collider.bounds.Contains(position) &&
-                    (i + blocObject.bloc.min.x >= 0) && (j + blocObject.bloc.min.y >= 0) &&
-                    (i + blocObject.bloc.max.x < TAILLE) && (j + blocObject.bloc.max.y < TAILLE))
+                    (min.x >= 0) && (min.y >= 0) &&
+                    (max.x < TAILLE) && (max.y < TAILLE))
                 {
-                    Debug.Log("Dedans");
                     foreach(Case c in blocObject.bloc.cases)
                     {
+                        switch(rotation)
+                        {
+                            case 0:
+                                if (contenus[i - c.XD, j - c.YD])
+                                {
+                                    return;
+                                }
+                                break;
+                        }
+
                         if(contenus[i - c.XD, j - c.YD])
                         {
                             return;
@@ -82,10 +112,6 @@ public class TestGrille : MonoBehaviour
 
                     return;
                 }
-                /*else
-                {
-                    Debug.Log("En dehors");
-                }*/
             }
         }
 

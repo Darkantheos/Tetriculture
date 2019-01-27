@@ -10,14 +10,14 @@ public class ContenuInventaire : MonoBehaviour
 
     private BlocObject blocInstantie = null;
     private Vector3 blocPosition;
-    private Vector3 blocRotation;
+    private float blocRotation;
     private Vector3 blocScale;
 
 
     private void Start()
     {
         blocPosition = new Vector3(0, 0, 0);
-        blocRotation = new Vector3(0, 0, 0);
+        blocRotation = 0;
         float scale = 46.59222f;
         blocScale = new Vector3(scale, scale, scale);
     }
@@ -35,7 +35,7 @@ public class ContenuInventaire : MonoBehaviour
 
         if ((blocInstantie) && (Input.GetMouseButtonUp(0)))
         {
-            grille.VerifierContenu(blocInstantie, blocPosition, (int)blocRotation.z);
+            grille.VerifierContenu(blocInstantie, blocPosition, (int)blocRotation);
 
             DestroyImmediate(blocInstantie.gameObject);
             blocInstantie = null;
@@ -66,6 +66,13 @@ public class ContenuInventaire : MonoBehaviour
     {
         //blocRotation.Set(rotation, blocRotation.y, blocRotation.z);
         //blocObject.transform.localEulerAngles = blocRotation;
+        blocRotation += rotation;
+        if (blocRotation == 360)
+            blocRotation = 0;
+        else if (blocRotation == -90)
+            blocRotation = 270;
+
+        Debug.Log(blocRotation);
 
         blocObject.transform.Rotate(0, rotation, 0);
     }
