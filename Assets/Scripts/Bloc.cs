@@ -11,6 +11,8 @@ public class Bloc
     [SerializeField] public List<Case> cases = new List<Case>();
 
     [SerializeField] public Vector2Int pivot;
+    [SerializeField] public Vector2Int min;
+    [SerializeField] public Vector2Int max;
 
     public Plante plante;
     public int DaysGrow;
