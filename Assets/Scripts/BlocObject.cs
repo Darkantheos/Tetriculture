@@ -2,21 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Plante 
+public class BlocObject : MonoBehaviour
 {
-    public string planteName;
-    public int Stade2Day;
-    public int Stade3Day;
-
-    public List<GameObject> stadesPlante;
-
-    public int SeasonGrow;
- 
-
+    public Bloc bloc;
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         
     }
@@ -25,5 +16,5 @@ public class Plante
     void Update()
     {
         
-    }
+    }*/
 }

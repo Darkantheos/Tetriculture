@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Plante 
+public class TuileClick : MonoBehaviour
 {
-    public string planteName;
-    public int Stade2Day;
-    public int Stade3Day;
-
-    public List<GameObject> stadesPlante;
-
-    public int SeasonGrow;
- 
-
-
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void OnMouseDown()
+    {
+        print(Master.mastersing.TuilesMap[transform.GetSiblingIndex()].CoordTuile);
     }
 
     // Update is called once per frame

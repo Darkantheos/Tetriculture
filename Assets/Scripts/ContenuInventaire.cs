@@ -4,36 +4,62 @@ using UnityEngine;
 
 public class ContenuInventaire : MonoBehaviour
 {
-    [SerializeField] private Bloc bloc;
+    [SerializeField] private TestGrille grille;
+    [SerializeField] private BlocObject blocObject;
 
-    private Vector3 currentRotation;
+    private BlocObject blocInstantie = null;
+    private Vector3 blocPosition;
+    private Vector3 blocRotation;
 
 
     private void Start()
     {
-        currentRotation = new Vector3(0, 0, 0);
+        blocPosition = new Vector3(0, 0, 0);
+        blocRotation = new Vector3(0, 0, 0);
+    }
+
+    private void Update()
+    {
+        if ((blocInstantie) && (Input.GetMouseButton(0)))
+        {
+            blocPosition.Set(Input.mousePosition.x, Input.mousePosition.y, 2);
+            blocPosition = Camera.main.ScreenToWorldPoint(blocPosition);
+            blocPosition.Set(blocPosition.x, blocPosition.y, 1.9f);
+            blocInstantie.transform.position = blocPosition;
+        }
+
+        if ((blocInstantie) && (Input.GetMouseButtonUp(0)))
+        {
+            grille.VerifierContenu(blocPosition, (int)blocRotation.z);
+
+            DestroyImmediate(blocInstantie.gameObject);
+            blocInstantie = null;
+
+            blocPosition.Set(0, 0, 0);
+            blocRotation.Set(0, 0, 0);
+        }
     }
 
 
     public float GetRotation()
     {
-        return currentRotation.z;
+        return blocRotation.z;
     }
 
     public void TournerGauche()
     {
-        Tourner(currentRotation.z + 90);
+        Tourner(blocRotation.z + 90);
     }
 
     public void TournerDroite()
     {
-        Tourner(currentRotation.z - 90);
+        Tourner(blocRotation.z - 90);
     }
 
 
     private void Tourner(float rotation)
     {
-        currentRotation.Set(currentRotation.x, currentRotation.y, rotation);
-        bloc.transform.localEulerAngles = currentRotation;
+        blocRotation.Set(blocRotation.x, blocRotation.y, rotation);
+        blocObject.transform.localEulerAngles = blocRotation;
     }
 }

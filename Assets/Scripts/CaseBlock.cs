@@ -2,18 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Plante 
+public class CaseBlock : MonoBehaviour
 {
-    public string planteName;
-    public int Stade2Day;
-    public int Stade3Day;
-
-    public List<GameObject> stadesPlante;
-
-    public int SeasonGrow;
- 
-
+    public Case caseblock;
 
     // Start is called before the first frame update
     void Start()
