@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Case 
 {
-    public bool isEmpty;
+    public bool isEmpty = true;
 
     //[SerializeField] public Vector2Int coordonnee;
     public Vector2 pivot;

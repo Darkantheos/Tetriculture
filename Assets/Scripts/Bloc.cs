@@ -8,7 +8,7 @@ public class Bloc
 {
     // Une case en L est definie par 4 cases avec ces positions :
     // (0,0) / (1,0) / (0,1) / (0,2)
-    [SerializeField] public List<Case> cases;
+    [SerializeField] public List<Case> cases = new List<Case>();
 
     [SerializeField] public Vector2Int pivot;
 
