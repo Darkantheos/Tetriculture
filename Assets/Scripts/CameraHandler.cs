@@ -3,7 +3,6 @@ using System.Collections;
 
 public class CameraHandler : MonoBehaviour {
 
-	public GameObject Master;
 
    public  static CameraHandler camhandler;
 
@@ -99,21 +98,30 @@ public class CameraHandler : MonoBehaviour {
 	}
 
 	void HandleMouse() {
-		// On mouse down, capture it's position.
-		// On mouse up, disable panning.
-		// If there is no mouse being pressed, do nothing.
-		if (Input.GetMouseButtonDown(0)) {
-			
-			lastPanPosition = Input.mousePosition;
-		} else if (Input.GetMouseButtonUp(0)) {
-			panActive = false;
-		} else if (Input.GetMouseButton(0)) {
-            if ((lastPanPosition - Input.mousePosition).magnitude > 1)
+        // On mouse down, capture it's position.
+        // On mouse up, disable panning.
+        // If there is no mouse being pressed, do nothing.
+
+        if (Master.mastersing.isTuilePanelActive == false)
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                panActive = true;
-                PanCamera(Input.mousePosition);
+
+                lastPanPosition = Input.mousePosition;
             }
-		}
+            else if (Input.GetMouseButtonUp(0))
+            {
+                panActive = false;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                if ((lastPanPosition - Input.mousePosition).magnitude > 1)
+                {
+                    panActive = true;
+                    PanCamera(Input.mousePosition);
+                }
+            }
+        }
 
         if(Input.GetMouseButtonDown(1))
         {

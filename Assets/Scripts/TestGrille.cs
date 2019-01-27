@@ -8,15 +8,12 @@ public class TestGrille : MonoBehaviour
 
     [SerializeField] private Material rouge;
 
-    private GameObject[,] quads;
-    private bool[,] contenus;
+    private GameObject[,] quads = new GameObject[TAILLE, TAILLE];
+    private bool[,] contenus = new bool[TAILLE, TAILLE];
 
 
-    private void Start()
+    private void StartGrille()
     {
-        quads = new GameObject[TAILLE, TAILLE];
-        contenus = new bool[TAILLE, TAILLE];
-
         int i = 0;
         int j = 0;
 
@@ -41,6 +38,42 @@ public class TestGrille : MonoBehaviour
             }
         }
     }
+
+    public Material AubergineCase;
+
+    public void ResetTableau()
+    {
+        StartGrille();
+
+       int ID = Master.mastersing.currentTuileActive;
+       // Master.mastersing.TuilesMap[ID].CaseArray
+
+       for (int i = 0; i < TAILLE; ++i)
+                {
+            for (int j = 0; j < TAILLE; ++j)
+            {
+                print(Master.mastersing.TuilesMap[ID].CaseArray[i, j].isEmpty);
+                print(contenus);
+                contenus[i, j] = Master.mastersing.TuilesMap[ID].CaseArray[i,j].isEmpty;
+                
+                if (!contenus[i, j])
+                {
+                    switch (Master.mastersing.TuilesMap[ID].blockList[Master.mastersing.TuilesMap[ID].CaseArray[i, j].blockID].plante.planteName)
+                    {
+                        case "Aubergine":
+                    quads[i, j].GetComponent<Renderer>().material = AubergineCase;
+
+                            break;
+                     }
+                }
+                else
+                {
+                    quads[i, j].GetComponent<Renderer>().material = rouge;
+                }
+            }
+        }
+    }
+
 
     public void VerifierContenu(BlocObject blocObject, Vector3 position, int rotation)
     {
@@ -91,29 +124,58 @@ public class TestGrille : MonoBehaviour
                         switch(rotation)
                         {
                             case 0:
-                                if (contenus[i - c.XD, j - c.YD])
+                                if (!contenus[i - c.XD, j - c.YD])
+                                {
+                                    return;
+                                }
+                                break;
+                            case 90:
+                                if (!contenus[i - c.XD, j - c.YD])
+                                {
+                                    return;
+                                }
+                                break;
+                            case 180:
+                                if (!contenus[i - c.XD, j - c.YD])
+                                {
+                                    return;
+                                }
+                                break;
+                            case 270:
+                                if (!contenus[i - c.XD, j - c.YD])
                                 {
                                     return;
                                 }
                                 break;
                         }
 
-                        if(contenus[i - c.XD, j - c.YD])
+                        if(!contenus[i - c.XD, j - c.YD])
                         {
                             return;
                         }
                     }
+                    int ID = Master.mastersing.currentTuileActive;
+
+                    Bloc blocTuile = blocObject.bloc;
+
 
                     foreach (Case c in blocObject.bloc.cases)
                     {
+                        
                         quads[i - c.XD, j - c.YD].GetComponent<Renderer>().material = c.Mat;
-                        contenus[i - c.XD, j - c.YD] = true;
-                    }
+                        contenus[i - c.XD, j - c.YD] = false;
+                        quads[i - c.XD, j - c.YD].GetComponent<CaseBlock>().caseblock = c;
+                        
 
+                    }
+                    Master.mastersing.TuilesMap[ID].blockList.Add(blocTuile);
                     return;
                 }
             }
         }
+
+
+        
 
         /*foreach (Case c in blocObject.bloc.cases)
         {
@@ -150,4 +212,23 @@ public class TestGrille : MonoBehaviour
                 break;
         }*/
     }
+
+    public void validate()
+    {
+        int ID = Master.mastersing.currentTuileActive;
+        for (int i = 0; i < TAILLE; ++i)
+        {
+            for (int j = 0; j < TAILLE; ++j)
+            {
+                GameObject quad = quads[i, j];
+                Master.mastersing.TuilesMap[ID].CaseArray[i, j] = quad.GetComponent<CaseBlock>().caseblock;
+                
+            }
+        }
+
+        Master.mastersing.UpdateTuile(Master.mastersing.currentTuileActive);
+        Master.mastersing.closeTuilePanel();
+    }
+
+
 }

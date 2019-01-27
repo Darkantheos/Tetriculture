@@ -13,6 +13,7 @@ public class ContenuInventaire : MonoBehaviour
     private float blocRotation;
     private Vector3 blocScale;
 
+    public Camera cam;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class ContenuInventaire : MonoBehaviour
         if ((blocInstantie) && (Input.GetMouseButton(0)))
         {
             blocPosition.Set(Input.mousePosition.x, Input.mousePosition.y, 5);
-            blocPosition = Camera.main.ScreenToWorldPoint(blocPosition);
+            blocPosition = cam.ScreenToWorldPoint(blocPosition);
             blocPosition.Set(blocPosition.x, blocPosition.y, 4.9f);
             blocInstantie.transform.position = blocPosition;
             blocInstantie.transform.localScale = blocScale;
@@ -49,6 +50,7 @@ public class ContenuInventaire : MonoBehaviour
     public void CreerBloc()
     {
         blocInstantie = Instantiate(blocObject, canvas.transform);
+        
     }
 
     public void TournerGauche()
