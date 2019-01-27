@@ -5,6 +5,7 @@ public class CameraHandler : MonoBehaviour {
 
 	public GameObject Master;
 
+   public  static CameraHandler camhandler;
 
 	private static readonly float PanSpeed = -20f;
     public static readonly float RotateSpeed = -100;
@@ -18,17 +19,18 @@ public class CameraHandler : MonoBehaviour {
 
 	private Camera cam;
 
-	private bool panActive;
+	public bool panActive;
 	private Vector3 lastPanPosition;
 	private int panFingerId; // Touch mode only
 
-    private bool rotateActive;
+    public bool rotateActive;
 
 
 	private bool zoomActive;
 	private Vector2[] lastZoomPositions; // Touch mode only
 
 	void Awake() {
+        camhandler = this;
 		cam = GetComponent<Camera>();
 
 		#if UNITY_ANDROID || UNITY_IOS 
@@ -101,12 +103,16 @@ public class CameraHandler : MonoBehaviour {
 		// On mouse up, disable panning.
 		// If there is no mouse being pressed, do nothing.
 		if (Input.GetMouseButtonDown(0)) {
-			panActive = true;
+			
 			lastPanPosition = Input.mousePosition;
 		} else if (Input.GetMouseButtonUp(0)) {
 			panActive = false;
 		} else if (Input.GetMouseButton(0)) {
-			PanCamera(Input.mousePosition);
+            if ((lastPanPosition - Input.mousePosition).magnitude > 1)
+            {
+                panActive = true;
+                PanCamera(Input.mousePosition);
+            }
 		}
 
         if(Input.GetMouseButtonDown(1))

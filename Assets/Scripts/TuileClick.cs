@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TuileClick : MonoBehaviour
 {
@@ -10,9 +11,15 @@ public class TuileClick : MonoBehaviour
         
     }
 
-    public void OnMouseDown()
+    public void OnMouseUp()
     {
-        print(Master.mastersing.TuilesMap[transform.GetSiblingIndex()].CoordTuile);
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            if (CameraHandler.camhandler.panActive == false)
+            {
+                print(Master.mastersing.TuilesMap[transform.GetSiblingIndex()].CoordTuile);
+            }
+        }
     }
 
     // Update is called once per frame
