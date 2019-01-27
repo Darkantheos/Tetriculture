@@ -15,7 +15,11 @@ public class Master : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject LinePrefab;
-    public Transform GridParent; 
+    public Transform GridParent;
+
+    public GameObject auberginePrefab0;
+    public GameObject auberginePrefab1;
+    public GameObject auberginePrefab2;
 
     public int gridSize = 10;
         public void DrawGrid()
@@ -47,6 +51,10 @@ public class Master : MonoBehaviour
         TuilesMap = new List<Tuile>();
         FillTuiles();
         InstantiateTuiles();
+        for (int i = 0; i < TuilesMap.Count; i++)
+        {
+            UpdateTuile(i);
+        }
     }
 
     public void FillTuiles()
@@ -57,24 +65,38 @@ public class Master : MonoBehaviour
             {
                 Tuile tuile = new Tuile();
                 tuile.CoordTuile = new Vector2(i*5, j*5);
+                //print(tuile.CoordTuile);
                 TuilesMap.Add(tuile);
 
-                tuile.blockList = new List<Bloc>();
+
 
                 Bloc aubergine = new Bloc();
-
                 aubergine.DaysGrow = 0;
-                
 
+                aubergine.plante = new Plante();
+                aubergine.plante.planteName = "Aubergine";
+                aubergine.plante.SeasonGrow = 0;
+                aubergine.plante.Stade2Day = 1;
+                aubergine.plante.Stade3Day = 2;
+                aubergine.plante.stadesPlante = new List<GameObject>();
+                aubergine.plante.stadesPlante.Add(auberginePrefab0);
+                aubergine.plante.stadesPlante.Add(auberginePrefab1);
+                aubergine.plante.stadesPlante.Add(auberginePrefab2);
 
-                tuile.CaseArray = new Case[5, 5];
-
-                tuile.CaseArray[2, 2] = new Case();
+                for (int k = 0; k < 5; k++)
+                {
+                    for (int l = 0; l < 5; l++)
+                    {
+                        tuile.CaseArray[k, l] = new Case();
+                        tuile.CaseArray[k, l].isEmpty = true;
+                    }
+                }
 
                 tuile.CaseArray[2, 2].blockID = 0;
                 tuile.CaseArray[2, 2].pivot.Set(2, 2);
                 tuile.CaseArray[2, 2].XD = 0;
                 tuile.CaseArray[2, 2].YD = 0;
+                tuile.CaseArray[2, 2].isEmpty = false;
 
                 aubergine.cases.Add(tuile.CaseArray[2, 2]);
                 tuile.blockList.Add(aubergine);
@@ -85,8 +107,31 @@ public class Master : MonoBehaviour
         }
     }
 
-    public void UpdateTuile(int x, int y)
+    public void UpdateTuile(int ID)
     {
+
+        //print(ID);
+      foreach (Transform child in TuileParent.transform.GetChild(ID))
+        {
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if(TuilesMap[ID].CaseArray[i,j].isEmpty == false)
+                {
+                    //print("je place une aubergine");
+                    GameObject item = Instantiate(TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.stadesPlante[0]);
+                    
+                    Vector3 kiki = new Vector3(TuilesMap[ID].CoordTuile.x- 2 + i, 0, TuilesMap[ID].CoordTuile.y- 2 +j);
+                    item.transform.position = kiki;
+                    print(TuilesMap[ID].CoordTuile.x);
+                    item.transform.parent = TuileParent.transform.GetChild(ID);
+                }
+            }
+        }
 
     }
 

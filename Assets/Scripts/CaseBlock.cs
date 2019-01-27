@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Tuile 
+public class CaseBlock : MonoBehaviour
 {
-    public Vector2 CoordTuile;
-    public string SoilTexture;
-
-    public List<Bloc> blockList = new List<Bloc>();
-
-    public Case[,] CaseArray = new Case[5,5];
+    public Case caseblock;
 
     // Start is called before the first frame update
-    /*void Start()
+    void Start()
     {
         
     }
@@ -22,5 +16,5 @@ public class Tuile
     void Update()
     {
         
-    }*/
+    }
 }
