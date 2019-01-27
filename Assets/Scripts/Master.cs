@@ -123,7 +123,22 @@ public class Master : MonoBehaviour
                 if(TuilesMap[ID].CaseArray[i,j].isEmpty == false)
                 {
                     //print("je place une aubergine");
-                    GameObject item = Instantiate(TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.stadesPlante[0]);
+                    //Check l'avancement de la plante
+                    GameObject item = new GameObject();
+                    if (TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].DaysGrow < TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.Stade2Day)
+                    {
+                        item = Instantiate(TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.stadesPlante[0]);
+                    }
+                    else if (TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].DaysGrow < TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.Stade3Day)
+                    {
+                        item = Instantiate(TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.stadesPlante[1]);
+                    }
+                    else
+                    {
+                        item = Instantiate(TuilesMap[ID].blockList[TuilesMap[ID].CaseArray[i, j].blockID].plante.stadesPlante[2]);
+                    }
+
+                     
                     
                     Vector3 kiki = new Vector3(TuilesMap[ID].CoordTuile.x- 2 + i, 0, TuilesMap[ID].CoordTuile.y- 2 +j);
                     item.transform.position = kiki;

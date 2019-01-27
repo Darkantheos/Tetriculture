@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6321319901944315169}
+  - component: {fileID: 8621158130647442001}
   m_Layer: 0
   m_Name: AubergineBlock
   m_TagString: Untagged
@@ -35,6 +36,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
+--- !u!114 &8621158130647442001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6321319901944315171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0f2b4057d6b8594d8ca8cc2de03e414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloc:
+    cases:
+    - isEmpty: 0
+      pivot: {x: 0, y: 0}
+      XD: 1
+      YD: -1
+      blockID: 0
+      Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
+    - isEmpty: 0
+      pivot: {x: 0, y: 0}
+      XD: 2
+      YD: -2
+      blockID: 0
+      Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
+    - isEmpty: 0
+      pivot: {x: 0, y: 0}
+      XD: -1
+      YD: -1
+      blockID: 0
+      Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
+    - isEmpty: 0
+      pivot: {x: 0, y: 0}
+      XD: -2
+      YD: -2
+      blockID: 0
+      Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
+    - isEmpty: 0
+      pivot: {x: 0, y: 0}
+      XD: 0
+      YD: 0
+      blockID: 0
+      Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
+    pivot: {x: 0, y: 0}
+    plante:
+      planteName: Aubergine
+      Stade2Day: 1
+      Stade3Day: 2
+      stadesPlante:
+      - {fileID: 8653686413406744723, guid: 84b1685f313fa2e48b0b415761b76115, type: 3}
+      - {fileID: 6392674886223945663, guid: c4ace8d879bb83941b334c76750cb6f6, type: 3}
+      - {fileID: 4021061556982543029, guid: 2261d3e4c15d03d48a357726a8f4c1aa, type: 3}
+      SeasonGrow: 0
+    DaysGrow: 0
 --- !u!1 &6321319902415920212
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +102,7 @@ GameObject:
   - component: {fileID: 6321319902415920213}
   - component: {fileID: 6321319902415920208}
   - component: {fileID: 6321319902415920211}
+  - component: {fileID: 5777769334708096476}
   m_Layer: 0
   m_Name: Case (1)
   m_TagString: Untagged
@@ -112,6 +169,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5777769334708096476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6321319902415920212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23be381379334a24aa039a6733652f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caseblock:
+    isEmpty: 1
+    pivot: {x: 0, y: 0}
+    XD: -1
+    YD: -1
+    blockID: 0
+    Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
 --- !u!1 &6321319902611826900
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +199,7 @@ GameObject:
   - component: {fileID: 6321319902611826901}
   - component: {fileID: 6321319902611826896}
   - component: {fileID: 6321319902611826899}
+  - component: {fileID: 5792478015122822053}
   m_Layer: 0
   m_Name: Case (3)
   m_TagString: Untagged
@@ -189,6 +266,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5792478015122822053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6321319902611826900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23be381379334a24aa039a6733652f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caseblock:
+    isEmpty: 1
+    pivot: {x: 0, y: 0}
+    XD: 1
+    YD: -1
+    blockID: 0
+    Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
 --- !u!1 &6321319902707197197
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +296,7 @@ GameObject:
   - component: {fileID: 6321319902707197194}
   - component: {fileID: 6321319902707197193}
   - component: {fileID: 6321319902707197192}
+  - component: {fileID: 8869951702505682070}
   m_Layer: 0
   m_Name: Case (4)
   m_TagString: Untagged
@@ -266,6 +363,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8869951702505682070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6321319902707197197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23be381379334a24aa039a6733652f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caseblock:
+    isEmpty: 1
+    pivot: {x: 0, y: 0}
+    XD: 2
+    YD: -2
+    blockID: 0
+    Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
 --- !u!1 &6321319903246461733
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +393,7 @@ GameObject:
   - component: {fileID: 6321319903246461729}
   - component: {fileID: 6321319903246461728}
   - component: {fileID: 6321319903246461731}
+  - component: {fileID: 6274221889146559025}
   m_Layer: 0
   m_Name: Pivot
   m_TagString: Untagged
@@ -343,6 +460,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6274221889146559025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6321319903246461733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23be381379334a24aa039a6733652f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caseblock:
+    isEmpty: 1
+    pivot: {x: 0, y: 0}
+    XD: 0
+    YD: 0
+    blockID: 0
+    Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
 --- !u!1 &6321319903740746914
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +490,7 @@ GameObject:
   - component: {fileID: 6321319903740746915}
   - component: {fileID: 6321319903740746942}
   - component: {fileID: 6321319903740746913}
+  - component: {fileID: 3668927759140842533}
   m_Layer: 0
   m_Name: Case (2)
   m_TagString: Untagged
@@ -420,3 +557,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3668927759140842533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6321319903740746914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23be381379334a24aa039a6733652f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caseblock:
+    isEmpty: 1
+    pivot: {x: 0, y: 0}
+    XD: -2
+    YD: -2
+    blockID: 0
+    Mat: {fileID: 2100000, guid: 4dc367e0d67e4824f8a878683a765a1e, type: 2}
