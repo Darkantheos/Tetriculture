@@ -12,7 +12,7 @@ public class Master : MonoBehaviour
 
     public GameObject TuilePrefab;
     public GameObject TuileParent;
-    public Vector3 vectorTemp = new Vector3(0,0,0);
+    public Vector3 vectorTemp = new Vector3(0, 0, 0);
     // Start is called before the first frame update
 
     public GameObject LinePrefab;
@@ -33,6 +33,25 @@ public class Master : MonoBehaviour
     GradientColorKey[] morningSkykey;
     GradientAlphaKey[] alphaKey;
 
+    public int currentTuileActive = 0;
+    public bool isTuilePanelActive = false;
+    public GameObject CanvasTuilePanel;
+
+    public TestGrille Tstgrille;
+
+    public void OpenTuilePanel(int ID)
+    {
+
+        currentTuileActive = ID;
+        isTuilePanelActive = true;
+        CanvasTuilePanel.SetActive(true);
+        Tstgrille.ResetTableau();
+    }
+    public void closeTuilePanel()
+    {
+        isTuilePanelActive = false;
+        CanvasTuilePanel.SetActive(false);
+    }
 
     public void DrawGrid()
     {
@@ -111,7 +130,7 @@ public class Master : MonoBehaviour
                 TuilesMap.Add(tuile);
 
 
-
+                
                 Bloc aubergine = new Bloc();
                 aubergine.DaysGrow = 0;
 
@@ -134,15 +153,16 @@ public class Master : MonoBehaviour
                     }
                 }
 
+                /*
                 tuile.CaseArray[2, 2].blockID = 0;
                 tuile.CaseArray[2, 2].pivot.Set(2, 2);
                 tuile.CaseArray[2, 2].XD = 0;
                 tuile.CaseArray[2, 2].YD = 0;
                 tuile.CaseArray[2, 2].isEmpty = false;
-
-                aubergine.cases.Add(tuile.CaseArray[2, 2]);
+                */
+                //aubergine.cases.Add(tuile.CaseArray[2, 2]);
                 tuile.blockList.Add(aubergine);
-
+                
                 
               
             }
@@ -291,6 +311,7 @@ else
         {
             for (int j = 0; j < TuilesMap[i].blockList.Count; j++)
             {
+ 
                 TuilesMap[i].blockList[j].DaysGrow++;
             }
         }

@@ -17,7 +17,13 @@ public class TuileClick : MonoBehaviour
         {
             if (CameraHandler.camhandler.panActive == false)
             {
-                print(Master.mastersing.TuilesMap[transform.GetSiblingIndex()].CoordTuile);
+                if (!Master.mastersing.isTuilePanelActive)
+                {
+
+                    print(Master.mastersing.TuilesMap[transform.GetSiblingIndex()].CoordTuile);
+                    Master.mastersing.OpenTuilePanel(transform.GetSiblingIndex());
+                }
+                
             }
         }
     }
